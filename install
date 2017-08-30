@@ -1,8 +1,0 @@
-wget http://ftp.gnu.org/gnu/gcc/gcc-6.2.0/gcc-6.2.0.tar.gz
-tar -xzf gcc-6.2.0.tar.gz
-
-yum install -y gcc && yum install -y gcc-c++
-
-wget http://mirrors.kernel.org/gnu/m4/m4-1.4.9.tar.gz && tar zxvf m4-1.4.9.tar.gz
-
-mkdir /usr/local/m4-1.4.9 && ./configure --prefix=/usr/local/m4-1.4.9
