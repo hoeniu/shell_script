@@ -1,4 +1,3 @@
-
 echo "Download gcc 6.2"
 
 wget http://ftp.gnu.org/gnu/gcc/gcc-6.2.0/gcc-6.2.0.tar.gz  /dev/null
@@ -50,11 +49,11 @@ echo    "         --------------------------INSTALL ----------------------------
          -----------------------------gmp-------------------------------
          --------------------------------------------------------------"
 
-cd m4-1.4.9
+cd gmp-4.3.2
 
 clear
 
-echo -n "please chose an absolute directory name:" && read m4Directory
+echo -n "please chose an absolute directory name:" && read gmpDirectory
 
 if [ -d $m4Directory ]
 
@@ -64,8 +63,60 @@ then
 
 else
 
-  echo    "M4 will be install $m4Directory"
+  echo    "M4 will be install $gmpDirectory"
 
 fi
 
-mkdir $M4Direct && ./configure --prefix=$M4Direct
+mkdir $gmpDirect && ./configure --prefix=$gmpDirect
+
+
+
+echo    "         --------------------------INSTALL ----------------------------
+         --------------------------------------------------------------
+         -----------------------------mpfr-------------------------------
+          --------------------------------------------------------------"
+
+cd mpfr-2.4.2
+
+       
+
+echo -n "please chose an absolute directory name:" && read mpfrDirectory
+
+if [ -d $m4Directory ]
+
+   then
+
+       echo   "The Directory has exist."
+
+   else
+
+       echo    "M4 will be install $mpfrDirectory"
+
+fi
+
+ mkdir $mpfrDirect && ./configure --prefix=$mpfrDirect
+
+echo    "         --------------------------INSTALL ----------------------------
+         --------------------------------------------------------------
+         -----------------------------mpc-------------------------------
+          --------------------------------------------------------------"
+
+cd mpc-0.8.2
+
+       
+
+echo -n "please chose an absolute directory name:" && read mpfrDirectory
+
+if [ -d $mpcDirectory ]
+
+   then
+
+       echo   "The Directory has exist."
+
+   else
+
+       echo    "mpc  will be install $mpcDirectory"
+
+fi
+
+ mkdir $mpcDirect && ./configure --prefix=$mpcDirect
