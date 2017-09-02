@@ -1,3 +1,5 @@
+# major install script
+
 if [ `uname`='linux' ]
 
 then 
