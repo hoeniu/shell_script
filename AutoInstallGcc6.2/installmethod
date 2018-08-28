@@ -1,0 +1,60 @@
+一、 下载gcc-6.2.0安装包并解压:
+wget http://ftp.gnu.org/gnu/gcc/gcc-6.2.0/gcc-6.2.0.tar.gz
+tar -xzf gcc-6.2.0.tar.gz
+二、下载编译所需依赖项：
+安装c和c++编译器
+yum install -y gcc && yum install -y gcc-c++
+
+安装依赖库mpfr、gmp和mpc
+由于mpfr依赖gmp，而mpc依赖gmp和mpfr，所以要先安装gmp，其次mpfr，最后才是mpc，又由于mpfr需要m4命令支持。所以先按安装m4：
+* 安装m4命令：
+下载m4压缩包并解压
+wget http://mirrors.kernel.org/gnu/m4/m4-1.4.9.tar.gz && tar zxvf m4-1.4.9.tar.gz
+创建m4安装目录并配置到安装目录：
+mkdir /usr/local/m4-1.4.9 && ./configure --prefix=/usr/local/m4-1.4.9
+编译和安装：
+make -j4 && make install
+添加到PATH：
+vim /etc/profile，加入PATH=$PATH:/usr/local/m4-1.4.9/bin，source /etc/profile后立即生效。
+* 安装gmp、mpfr、mpc库
+gmp、mpfr、mpc这三个库可以从ftp://gcc.gnu.org/pub/gcc/infrastructure/下载相应的压缩包。
+下载gmp压缩包并解压：
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/gmp-4.3.2.tar.bz2 && tar jxvf gmp-4.3.2.tar.bz2
+创建gmp安装目录并配置到安装目录：
+mkdir /usr/local/gmp-4.3.2 && ./configure --prefix=/usr/local/gmp-4.3.2
+编译和安装：
+make -j4 && make install
+* 安装mpfr库
+下载mpfr压缩包并解压：
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpfr-2.4.2.tar.bz2 && tar jxvf mpfr-2.4.2.tar.bz2
+创建mpfr安装目录并配置到安装目录：
+mkdir /usr/local/mpfr-2.4.2 && ./configure --prefix=/usr/local/mpfr-2.4.2 --with-gmp=/usr/local/gmp-4.3.2
+编译和安装：
+make -j4 && make install
+* 安装mpc库
+下载mpc压缩包并解压：
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpc-0.8.1.tar.gz && tar zxvf mpc-0.8.1.tar.gz
+创建mpc安装目录并配置到安装目录：
+mkdir /usr/local/mpc-0.8.1 && ./configure --prefix=/usr/local/mpc-0.8.1 --with-gmp=/usr/local/gmp-4.3.2 --with-mpfr=/usr/local/mpfr-2.4.2
+编译和安装：
+make -j4 && make install
+三、编译安装gcc-6.2.0：
+配置gmp、mpfr和mpc库的环境变量如下
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpc-0.8.1/lib:/usr/local/gmp-4.3.2/lib:/usr/local/mpfr-2.4.2/lib
+进入gcc安装目录
+cd gcc-6.2.0
+对gcc6.2安装进行配置，配置如下：
+
+./configure --prefix=/usr/local/gcc-6.2.0 --enable-threads=posix --enable-languages=c,c++ \
+--enable--long-long --disable-checking --disable-multilib --with-gmp=/usr/local/gmp-4.3.2 \
+--with-mpfr=/usr/local/mpfr-2.4.2 --with-mpc=/usr/local/mpc-0.8.1
+对gcc6.2进行编译并安装
+make -j4 && make install
+
+四、将新版本gcc加入命令命令搜索路径：
+重命名之前版本的gcc编译器 mv /usr/bin/gcc /usr/bin/gcc-4.8.5，将新gcc6.2编译器链接到指定位置
+ln -s /usr/local/gcc-6.2.0/bin/gcc /usr/bin/gcc
+ln -s /usr/local/gcc-6.2.0/bin/g++ /usr/bin/g++
+
+yum install texi2html texinfo 
+
