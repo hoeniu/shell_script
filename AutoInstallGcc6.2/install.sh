@@ -13,7 +13,7 @@ wget http://mirrors.kernel.org/gnu/m4/m4-1.4.9.tar.gz && tar zxvf m4-1.4.9.tar.g
 wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpfr-2.4.2.tar.bz2 && tar jxvf mpfr-2.4.2.tar.bz2 /dev/null
 wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpc-0.8.1.tar.gz && tar zxvf mpc-0.8.1.tar.gz /dev/null
 
-echo    "         --------------------------INSTALL ----------------------------
+echo    "--------------------------INSTALL ----------------------------
          --------------------------------------------------------------
          -----------------------------M4------------------------------- 
          --------------------------------------------------------------"
