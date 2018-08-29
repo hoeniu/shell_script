@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 GENERATION=1 #代数号
 PLSZ=1  #样本号
 Numbercpu=8 #需要设定每个节点cpu数量
