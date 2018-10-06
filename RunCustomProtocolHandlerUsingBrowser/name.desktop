@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=name
+Exec=gedit %u
+Type=Application
+Terminal=true
+MimeType=x-scheme-handler/name;
